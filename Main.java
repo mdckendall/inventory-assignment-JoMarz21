@@ -22,15 +22,16 @@ class Main {
       if (selection == 1) {
         Scanner additem = new Scanner(System.in);
         System.out.println("Enter the name: ");
-        String name = additem.nextLine(); // use nextLine() to read entire line
+        String name = additem.nextLine(); // Use nextLine() instead of next() because github keeps complaining
         itemarray.add(name);
         System.out.println("Enter the serial number: ");
         String serialnum = additem.next();
         itemarray.add(serialnum);
         System.out.println("Enter the value in dollars (whole number):");
         int value = additem.nextInt();
-        itemarray.add(Integer.toString(value)); // convert value to string before adding to ArrayList
+        itemarray.add(value);
         System.out.println(name + "," + serialnum + "," + value);
+        additem.nextLine(); // Consume the newline character
       }
 
       if (selection == 2) {
