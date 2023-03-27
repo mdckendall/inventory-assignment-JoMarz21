@@ -19,7 +19,7 @@ start = "jdt-language-server"
 language = "java"
 
 [nix]
-channel = "stable-22_05"
+channel = "stable-22_11"
 
 [debugger]
 support = true
@@ -57,3 +57,7 @@ type = "request"
 [debugger.interactive.launchMessage.arguments]
 classPaths = ["."]
 mainClass = "Main"
+
+[deployment]
+build = "javac -classpath .:target/dependency/* -d . $(find . -type f -name '*.java')"
+run = "java -classpath .:target/dependency/* Main"
