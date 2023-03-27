@@ -22,42 +22,42 @@ class Main {
       if (selection == 1) {
         Scanner additem = new Scanner(System.in);
         System.out.println("Enter the name: ");
-        String name = additem.next();
+        String name = additem.nextLine(); // use nextLine() to read entire line
         itemarray.add(name);
         System.out.println("Enter the serial number: ");
         String serialnum = additem.next();
         itemarray.add(serialnum);
         System.out.println("Enter the value in dollars (whole number):");
         int value = additem.nextInt();
-        itemarray.add(value);
+        itemarray.add(Integer.toString(value)); // convert value to string before adding to ArrayList
         System.out.println(name + "," + serialnum + "," + value);
-
       }
-if (selection == 2){
-  Scanner deleteitem = new Scanner(System.in);
-  System.out.println("Enter the serial number of the device to delete: ");
-  String serialnum = deleteitem.next();
-  
-  // find the index of the element with the given serial number
-  int index = -1;
-  for (int i = 0; i < itemarray.size(); i += 3) {
-    if (itemarray.get(i+1).equals(serialnum)) {
-      index = i;
-      break;
-    }
-  }
-  
-  // check if the element was found
-  if (index == -1) {
-    System.out.println("Device with serial number " + serialnum + " was not found.");
-  } else {
-    // remove the name, serial number, and value from the list
-    itemarray.remove(index);
-    itemarray.remove(index);
-    itemarray.remove(index);
-    System.out.println("Device with serial number " + serialnum + " was deleted.");
-  }
-}
+
+      if (selection == 2) {
+        Scanner deleteitem = new Scanner(System.in);
+        System.out.println("Enter the serial number of the device to delete: ");
+        String serialnum = deleteitem.next();
+
+        // find the index of the element with the given serial number
+        int index = -1;
+        for (int i = 0; i < itemarray.size(); i += 3) {
+          if (itemarray.get(i + 1).equals(serialnum)) {
+            index = i;
+            break;
+          }
+        }
+
+        // check if the element was found
+        if (index == -1) {
+          System.out.println("Device with serial number " + serialnum + " was not found.");
+        } else {
+          // remove the name, serial number, and value from the list
+          itemarray.remove(index);
+          itemarray.remove(index);
+          itemarray.remove(index);
+          System.out.println("Device with serial number " + serialnum + " was deleted.");
+        }
+      }
 
       if (selection == 3) {
         Scanner changeitem = new Scanner(System.in);
@@ -95,20 +95,19 @@ if (selection == 2){
         }
       }
 
-if (selection == 4) {
-  if (itemarray.isEmpty()) {
-    System.out.println("The inventory is currently empty.");
-  } else {
-    for (Object item : itemarray) {
-      ArrayList<String> newItem = (ArrayList<String>) item;
-      String name = newItem.get(0);
-      String serialnum = newItem.get(1);
-      String value = newItem.get(2);
-      System.out.println(name + "," + serialnum + "," + value);
-    }
-  }
-}
-
+      if (selection == 4) {
+        if (itemarray.isEmpty()) {
+          System.out.println("The inventory is currently empty.");
+        } else {
+          for (Object item : itemarray) {
+            ArrayList<String> newItem = (ArrayList<String>) item;
+            String name = newItem.get(0);
+            String serialnum = newItem.get(1);
+            String value = newItem.get(2);
+            System.out.println(name + "," + serialnum + "," + value);
+          }
+        }
+      }
 
       if (selection == 5) {
         System.out.println("You have quit the program. Have a nice day!");
