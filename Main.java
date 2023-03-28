@@ -22,16 +22,16 @@ class Main {
       if (selection == 1) {
         Scanner additem = new Scanner(System.in);
         System.out.println("Enter the name: ");
-        String name = additem.nextLine(); // Use nextLine() instead of next() because github keeps complaining
+        String name = additem.nextLine();
         itemarray.add(name);
         System.out.println("Enter the serial number: ");
         String serialnum = additem.next();
         itemarray.add(serialnum);
+        additem.nextLine(); // consume the newline character
         System.out.println("Enter the value in dollars (whole number):");
         int value = additem.nextInt();
         itemarray.add(value);
         System.out.println(name + "," + serialnum + "," + value);
-        additem.nextLine(); // Consume the newline character
       }
 
       if (selection == 2) {
@@ -60,10 +60,11 @@ class Main {
         }
       }
 
- if (selection == 3) {
+      if (selection == 3) {
         Scanner changeitem = new Scanner(System.in);
         System.out.println("Enter the serial number of the device to change: ");
         String serialnum = changeitem.next();
+        changeitem.nextLine(); // consume the newline character
 
         // find the index of the element with the given serial number
         int index = -1;
@@ -80,7 +81,7 @@ class Main {
         } else {
           // prompt the user for the new values
           System.out.println("Enter the new name: ");
-          String name = changeitem.next();
+          String name = changeitem.nextLine();
           System.out.println("Enter the new value in dollars (whole number):");
           int value = changeitem.nextInt();
 
