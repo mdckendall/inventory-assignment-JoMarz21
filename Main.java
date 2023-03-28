@@ -60,15 +60,15 @@ class Main {
         }
       }
 
-      if (selection == 3) {
+ if (selection == 3) {
         Scanner changeitem = new Scanner(System.in);
         System.out.println("Enter the serial number of the device to change: ");
         String serialnum = changeitem.next();
 
         // find the index of the element with the given serial number
         int index = -1;
-        for (int i = 0; i < itemarray.size(); i++) {
-          if (itemarray.get(i).toString().contains(serialnum)) {
+        for (int i = 0; i < itemarray.size(); i += 3) {
+          if (itemarray.get(i + 1).equals(serialnum)) {
             index = i;
             break;
           }
@@ -84,13 +84,14 @@ class Main {
           System.out.println("Enter the new value in dollars (whole number):");
           int value = changeitem.nextInt();
 
-          // create a new item object with the new values
-          itemarray.add(name);
-          itemarray.add(serialnum);
-          itemarray.add(Integer.toString(value));
+          // create a new item array list with the new values
+          ArrayList<String> newItem = new ArrayList<>();
+          newItem.add(name);
+          newItem.add(serialnum);
+          newItem.add(Integer.toString(value));
 
           // replace the old item with the new one
-          itemarray.set(index, itemarray);
+          itemarray.set(index, newItem);
 
           System.out.println("Device with serial number " + serialnum + "was updated.");
         }
