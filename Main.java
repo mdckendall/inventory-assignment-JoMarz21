@@ -4,7 +4,7 @@ import java.util.ArrayList;
 class Main {
   public static void main(String[] args) {
     Scanner inventorymenu = new Scanner(System.in);
-    ArrayList itemarray = new ArrayList<>();
+    ArrayList<ArrayList<String>> itemarray = new ArrayList<ArrayList<String>>();
     boolean quit = false;
     while (quit != true) {
       System.out.println("Press 1 to add an item.");
@@ -20,18 +20,19 @@ class Main {
       int selection = inventorymenu.nextInt();
 
       if (selection == 1) {
+        ArrayList<String> newItem = new ArrayList<String>();
         Scanner additem = new Scanner(System.in);
         System.out.println("Enter the name: ");
         String name = additem.nextLine();
-        itemarray.add(name);
+        newItem.add(name);
         System.out.println("Enter the serial number: ");
         String serialnum = additem.next();
-        itemarray.add(serialnum);
-        additem.nextLine(); // consume the newline character
+        newItem.add(serialnum);
         System.out.println("Enter the value in dollars (whole number):");
         int value = additem.nextInt();
-        itemarray.add(value);
+        newItem.add(Integer.toString(value));
         System.out.println(name + "," + serialnum + "," + value);
+        itemarray.add(newItem);
       }
 
       if (selection == 2) {
@@ -102,11 +103,10 @@ class Main {
         if (itemarray.isEmpty()) {
           System.out.println("The inventory is currently empty.");
         } else {
-          for (Object item : itemarray) {
-            ArrayList<String> newItem = (ArrayList<String>) item;
-            String name = newItem.get(0);
-            String serialnum = newItem.get(1);
-            String value = newItem.get(2);
+          for (ArrayList<String> item : itemarray) {
+            String name = item.get(0);
+            String serialnum = item.get(1);
+            String value = item.get(2);
             System.out.println(name + "," + serialnum + "," + value);
           }
         }
